@@ -1,32 +1,38 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { employeeApi, attendanceApi, financeApi } from '@/lib/api';
 import type { Employee, AttendanceRecord, PettyCash, Reimbursement } from '@/types';
 
 export function useEmployees() {
-  return useQuery(['employees'], () => employeeApi.getAll());
+  return useQuery({
+    queryKey: ['employees'],
+    queryFn: () => employeeApi.getAll()
+  });
 }
 
 export function useEmployee(id: string) {
-  return useQuery(['employee', id], () => employeeApi.getById(id));
+  return useQuery({
+    queryKey: ['employee', id],
+    queryFn: () => employeeApi.getById(id)
+  });
 }
 
 export function useAttendance(employeeId: string) {
-  return useQuery(
-    ['attendance', employeeId], 
-    () => attendanceApi.getByEmployeeId(employeeId)
-  );
+  return useQuery({
+    queryKey: ['attendance', employeeId],
+    queryFn: () => attendanceApi.getByEmployeeId(employeeId)
+  });
 }
 
 export function usePettyCash(employeeId?: string) {
-  return useQuery(
-    ['pettyCash', employeeId], 
-    () => financeApi.getPettyCash(employeeId)
-  );
+  return useQuery({
+    queryKey: ['pettyCash', employeeId],
+    queryFn: () => financeApi.getPettyCash(employeeId)
+  });
 }
 
 export function useReimbursements(employeeId?: string) {
-  return useQuery(
-    ['reimbursements', employeeId], 
-    () => financeApi.getReimbursements(employeeId)
-  );
+  return useQuery({
+    queryKey: ['reimbursements', employeeId],
+    queryFn: () => financeApi.getReimbursements(employeeId)
+  });
 } 

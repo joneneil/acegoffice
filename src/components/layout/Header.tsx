@@ -1,4 +1,4 @@
-import { MenuIcon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon as MenuIcon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 
 interface HeaderProps {
   onMenuClick: () => void;

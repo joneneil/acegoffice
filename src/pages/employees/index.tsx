@@ -1,8 +1,9 @@
 import { useEmployees } from '@/hooks/useData';
 import Layout from '@/components/layout/Layout';
+import type { Employee } from '@/types';
 
 export default function EmployeesPage() {
-  const { data: employees, isLoading } = useEmployees();
+  const { data: employees = [], isLoading } = useEmployees();
 
   if (isLoading) {
     return <div>加载中...</div>;
@@ -40,7 +41,7 @@ export default function EmployeesPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {employees?.map((employee) => (
+              {employees.map((employee: Employee) => (
                 <tr key={employee.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{employee.name}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{employee.department}</td>
